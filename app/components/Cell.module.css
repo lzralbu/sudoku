@@ -1,0 +1,28 @@
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: larger;
+  font-weight: 600;
+
+  background-color: #785ef0;
+  color: #ffb000;
+
+  user-select: none;
+}
+
+.cell:hover {
+  font-size: x-large;
+  background-color: #dc267f;
+}
+
+.cell:active {
+  font-size: medium;
+  background-color: #dc267f;
+}
+
+.selectedCell {
+  composes: cell;
+  border: #ffb000 4px dashed;
+}
