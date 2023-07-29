@@ -54,6 +54,8 @@ export default function Game() {
       e.stopPropagation();
       if (isFinite(e.key as unknown as number) && Number(e.key) > 0) {
         handleValueSelection(e.key);
+      } else if (e.key === "Backspace" && selectedCellId >= 0) {
+        handleClearSelectedCell();
       }
     }
 
@@ -153,6 +155,18 @@ export default function Game() {
     makeMove(selectedCellId, value);
   }
 
+  function handleClearSelectedCell() {
+    if (selectedCellId < 0) return;
+
+    setCellValues(
+      (oldCellValues) =>
+        oldCellValues.slice(0, selectedCellId) +
+        "-" +
+        oldCellValues.slice(selectedCellId + 1)
+    );
+    setSelectedCellId(-1);
+  }
+
   return (
     <div className={styles.game}>
       <h1>Sudoku</h1>
@@ -169,6 +183,8 @@ export default function Game() {
               {k + 1}
             </button>
           ))}
+          <button onClick={handleClearSelectedCell}>Clear selection</button>
+          <button onClick={() => {}}>Solution</button>
         </div>
         <button onClick={handleNewGame}>New game</button>
         <label>

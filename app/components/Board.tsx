@@ -13,7 +13,7 @@ export default function Board({
       {Array.from({ length: 9 }, (_, boxIndex) => (
         <Box key={boxIndex}>
           {Array.from({ length: 9 }, (_, subBoxIndex) => {
-            const cellIndex = boxIndex * 9 + subBoxIndex;
+            const cellIndex = 9 * boxIndex + subBoxIndex;
             return (
               <Cell
                 key={cellIndex}
