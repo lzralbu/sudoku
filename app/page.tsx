@@ -16,7 +16,6 @@ function cellIdToCellPosition(cellId) {
   const subBox = cellId % 9;
   const row = 3 * Math.floor(box / 3) + Math.floor(subBox / 3);
   const column = 3 * (box % 3) + (subBox % 3);
-
   return {
     row,
     column,
@@ -27,7 +26,6 @@ function cellIdToCellPosition(cellId) {
 function cellPositionToCellId({ row, column }) {
   const box = 3 * Math.floor(row / 3) + Math.floor(column / 3);
   const subBox = 3 * (row % 3) + (column % 3);
-
   return box * 9 + subBox;
 }
 
