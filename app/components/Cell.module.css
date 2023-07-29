@@ -26,3 +26,9 @@
   composes: cell;
   border: #ffb000 4px dashed;
 }
+
+.initialCell {
+  composes: cell;
+  background-color: #785ef0;
+  color: black;
+}

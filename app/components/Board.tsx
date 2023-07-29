@@ -1,12 +1,10 @@
-"use client";
-
 import styles from "./Board.module.css";
-import { useState } from "react";
 import Box from "./Box";
 import Cell from "./Cell";
 
 export default function Board({
   currentSudoku,
+  cellValues,
   selectedCellId,
   handleCellSelection,
 }) {
@@ -14,16 +12,15 @@ export default function Board({
     <div className={styles.board}>
       {Array.from({ length: 9 }, (_, boxIndex) => (
         <Box key={boxIndex}>
-          {Array.from({ length: 9 }, (_, cellBoxIndex) => {
-            const cellIndex = boxIndex * 9 + cellBoxIndex;
+          {Array.from({ length: 9 }, (_, subBoxIndex) => {
+            const cellIndex = boxIndex * 9 + subBoxIndex;
             return (
               <Cell
                 key={cellIndex}
+                currentSudoku={currentSudoku}
                 id={cellIndex}
                 value={
-                  currentSudoku?.puzzle[cellIndex] === "-"
-                    ? null
-                    : currentSudoku?.puzzle[cellIndex]
+                  cellValues[cellIndex] === "-" ? null : cellValues[cellIndex]
                 }
                 selectedCellId={selectedCellId}
                 handleCellSelection={handleCellSelection}

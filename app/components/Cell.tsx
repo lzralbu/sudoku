@@ -1,7 +1,7 @@
-import { useState } from "react";
 import styles from "./Cell.module.css";
 
 export default function Cell({
+  currentSudoku,
   id,
   value,
   selectedCellId,
@@ -9,8 +9,14 @@ export default function Cell({
 }) {
   return (
     <div
-      className={id !== selectedCellId ? styles.cell : styles.selectedCell}
-      onClick={(e) => handleCellSelection(id)}
+      className={
+        currentSudoku.puzzle[id] !== "-"
+          ? styles.initialCell
+          : id === selectedCellId
+          ? styles.selectedCell
+          : styles.cell
+      }
+      onClick={() => handleCellSelection(id)}
     >
       {value}
     </div>
