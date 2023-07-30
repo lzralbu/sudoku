@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useReducer } from "react";
-
 import styles from "./page.module.css";
+
+import { useEffect, useReducer } from "react";
 import sudokuReducer, { GameState } from "./lib/sudokuReducer";
 import Grid from "./components/Grid";
 import Menu from "./components/Menu";
-import { Difficulty } from "sudoku-gen/dist/types/difficulty.type";
 
 const initialCellValues =
   "389157462756842391241369875634971825918425673527683194716293548589164237432758916";

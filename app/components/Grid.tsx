@@ -1,5 +1,5 @@
-import { GameState } from "../lib/sudokuReducer";
 import styles from "./Grid.module.css";
+import { GameState } from "../lib/sudokuReducer";
 import Box from "./Box";
 import Cell from "./Cell";
 

@@ -3,17 +3,17 @@
   justify-content: center;
   align-items: center;
 
-  font-size: larger;
+  font-size: x-large;
   font-weight: 600;
 
-  background-color: #785ef0;
+  background-color: #8b73f5;
   color: #ffb000;
 
   user-select: none;
 }
 
 .cell:hover {
-  font-size: x-large;
+  font-size: xx-large;
   background-color: #dc267f;
 }
 
@@ -29,6 +29,5 @@
 
 .initialCell {
   composes: cell;
-  background-color: #785ef0;
   color: black;
 }
