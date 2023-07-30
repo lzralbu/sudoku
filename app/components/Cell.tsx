@@ -1,18 +1,25 @@
 import styles from "./Cell.module.css";
+import { GameState } from "../lib/sudokuReducer";
+
+type CellProps = {
+  id: number;
+  state: GameState;
+  handleCellSelection: (id: number) => void;
+  value: string;
+};
 
 export default function Cell({
-  currentSudoku,
   id,
-  value,
-  selectedCellId,
+  state,
   handleCellSelection,
-}) {
+  value,
+}: CellProps) {
   return (
     <div
       className={
-        currentSudoku.puzzle[id] !== "-"
+        state.puzzle[id] !== "-"
           ? styles.initialCell
-          : id === selectedCellId
+          : id === state.selectedCellId
           ? styles.selectedCell
           : styles.cell
       }
