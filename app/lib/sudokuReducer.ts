@@ -6,15 +6,16 @@ export type GameState = {
   solution: string;
   cellValues: string;
   selectedCellId: number;
-  selectedDifficulty: Difficulty;
+  selectedDifficulty: string;
 };
 
 type ActionType =
   | { type: "startedNewGame" }
   | { type: "selectedCell"; cellId: number }
   | { type: "selectedValue"; value: string }
-  | { type: "selectedDifficulty"; difficulty: Difficulty }
-  | { type: "clearedSelectedCell" };
+  | { type: "selectedDifficulty"; difficulty: string }
+  | { type: "clearedSelectedCell" }
+  | { type: "gaveUp" };
 
 export default function sudokuReducer(
   state: GameState,
@@ -22,7 +23,9 @@ export default function sudokuReducer(
 ): GameState {
   switch (action.type) {
     case "startedNewGame": {
-      const { puzzle, solution } = getSudoku(state.selectedDifficulty);
+      const { puzzle, solution } = getSudoku(
+        state.selectedDifficulty as Difficulty
+      );
       const tempPuzzle = Array(81);
       const tempSolution = Array(81);
       for (let i = 0; i < puzzle.length; ++i) {
@@ -103,6 +106,13 @@ export default function sudokuReducer(
       };
     }
 
+    case "gaveUp": {
+      return {
+        ...state,
+        cellValues: state.solution,
+      };
+    }
+
     default: {
       throw Error("Unknown action: " + action);
     }
@@ -146,7 +156,7 @@ function validateMove(state: GameState, cellId: number, newValue: string) {
   return true;
 }
 
-function cellIdToCellPosition(cellId) {
+function cellIdToCellPosition(cellId: number) {
   const box = Math.floor(cellId / 9);
   const subBox = cellId % 9;
   const row = 3 * Math.floor(box / 3) + Math.floor(subBox / 3);
@@ -158,13 +168,19 @@ function cellIdToCellPosition(cellId) {
   };
 }
 
-function cellPositionToCellId({ row, column }) {
+function cellPositionToCellId({
+  row,
+  column,
+}: {
+  row: number;
+  column: number;
+}) {
   const box = 3 * Math.floor(row / 3) + Math.floor(column / 3);
   const subBox = 3 * (row % 3) + (column % 3);
   return box * 9 + subBox;
 }
 
-function sudokuIndexToCellId(index) {
+function sudokuIndexToCellId(index: number) {
   const row = Math.floor(index / 9);
   const column = index % 9;
   return cellPositionToCellId({ row, column });

@@ -25,7 +25,7 @@ export default function Cell({
       }
       onClick={() => handleCellSelection(id)}
     >
-      {value}
+      {value === "-" ? null : value}
     </div>
   );
 }

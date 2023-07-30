@@ -1,16 +1,16 @@
 import { GameState } from "../lib/sudokuReducer";
-import styles from "./Board.module.css";
+import styles from "./Grid.module.css";
 import Box from "./Box";
 import Cell from "./Cell";
 
-type BoardProps = {
+type GridProps = {
   state: GameState;
   handleCellSelection: (id: number) => void;
 };
 
-export default function Board({ state, handleCellSelection }: BoardProps) {
+export default function Grid({ state, handleCellSelection }: GridProps) {
   return (
-    <div className={styles.board}>
+    <div className={styles.grid}>
       {Array.from({ length: 9 }, (_, boxIndex) => (
         <Box key={boxIndex}>
           {Array.from({ length: 9 }, (_, subBoxIndex) => {
@@ -21,11 +21,7 @@ export default function Board({ state, handleCellSelection }: BoardProps) {
                 id={cellIndex}
                 state={state}
                 handleCellSelection={handleCellSelection}
-                value={
-                  state.cellValues[cellIndex] === "-"
-                    ? null
-                    : state.cellValues[cellIndex]
-                }
+                value={state.cellValues[cellIndex]}
               ></Cell>
             );
           })}
