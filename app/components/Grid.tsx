@@ -21,7 +21,6 @@ export default function Grid({ state, handleCellSelection }: GridProps) {
                 id={cellIndex}
                 state={state}
                 handleCellSelection={handleCellSelection}
-                value={state.cellValues[cellIndex]}
               ></Cell>
             );
           })}

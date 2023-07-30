@@ -5,15 +5,10 @@ type CellProps = {
   id: number;
   state: GameState;
   handleCellSelection: (id: number) => void;
-  value: string;
 };
 
-export default function Cell({
-  id,
-  state,
-  handleCellSelection,
-  value,
-}: CellProps) {
+export default function Cell({ id, state, handleCellSelection }: CellProps) {
+  const value = state.cellValues[id];
   return (
     <div
       className={
